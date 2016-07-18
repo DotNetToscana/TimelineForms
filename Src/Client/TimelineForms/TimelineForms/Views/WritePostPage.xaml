@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:ContentPageBase
+             Title="Write new post"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimelineForms.Views.WritePostPage"
+             xmlns:local="clr-namespace:TimelineForms.Common"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             xmlns:localBehaviors="clr-namespace:TimelineForms.Behaviors"
+             BindingContext="{Binding Source={StaticResource Locator}, Path=WritePostViewModel}">
+
+  <Grid>
+    <StackLayout>
+      <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+        <Image Source="{Binding User.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="60" VerticalOptions="Start" />
+        <Label Text="What are you doing?" />
+      </StackLayout>
+      <Editor HeightRequest="60">
+        <Editor.Behaviors>
+          <localBehaviors:EditorTextChangedBehavior Text="{Binding Message, Mode=TwoWay}" />
+        </Editor.Behaviors>
+      </Editor>
+      <StackLayout Orientation="Horizontal" Spacing="0">
+        <Label Text="Publish on Facebook" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+        <Switch IsToggled="{Binding PostOnFacebook, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+      </StackLayout>
+      <Button HorizontalOptions="End" Text="Publish" Command="{Binding SendCommand}" HeightRequest="40" Margin="0,20,0,0" />
+    </StackLayout>
+
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+      <ActivityIndicator.HorizontalOptions>
+        <OnPlatform x:TypeArguments="LayoutOptions" iOS="CenterAndExpand" Android="CenterAndExpand" WinPhone="FillAndExpand" />
+      </ActivityIndicator.HorizontalOptions>
+      <ActivityIndicator.VerticalOptions>
+        <OnPlatform x:TypeArguments="LayoutOptions" iOS="CenterAndExpand" Android="CenterAndExpand" WinPhone="FillAndExpand" />
+      </ActivityIndicator.VerticalOptions>
+    </ActivityIndicator>
+  </Grid>
+
+</local:ContentPageBase>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:ContentPageBase
+             Title="Timeline"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimelineForms.Views.HomePage"
+             xmlns:local="clr-namespace:TimelineForms.Common"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             BindingContext="{Binding Source={StaticResource Locator}, Path=HomeViewModel}">
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Order="Primary" Priority="0" Text="Write post" Command="{Binding WritePostCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="send.png" Android="send.png" WinPhone="Assets/AppBar/send.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Order="Primary" Priority="1" Text="Refresh" Command="{Binding RefreshCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="refresh.png" Android="refresh.png" WinPhone="Assets/AppBar/refresh.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Order="Secondary" Priority="0" Text="Logout" Command="{Binding LogoutCommand}" />
+  </ContentPage.ToolbarItems>
+
+  <Grid>
+    <ListView Margin="0,3,0,0" x:Name="postsListView" ItemsSource="{Binding Posts}" HasUnevenRows="True"
+              IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshCommand}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout>
+              <Frame Padding="5" HasShadow="true" OutlineColor="Gray">
+                <StackLayout>
+                  <StackLayout Orientation="Horizontal">
+                    <Image Source="{Binding Sender.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="60" VerticalOptions="Start" />
+                    <StackLayout>
+                      <Label Text="{Binding Sender.FullName}" FontSize="12" FontAttributes="Bold" />
+                      <Label Text="{Binding SentDate, Converter={StaticResource RelativeTimeConverter}}" TextColor="Gray"
+                             FontSize="12" Margin="0,-5,0,0" />
+                    </StackLayout>
+                  </StackLayout>
+                  <Label Text="{Binding Text}" />
+                  <Label HorizontalOptions="End" Text="{Binding TotalCommentsCount, StringFormat='Comments: {0}'}"
+                         FontSize="12" TextColor="Gray" Margin="0,0,10,0" />
+                  <StackLayout BackgroundColor="#F5F5F5" Margin="-3"
+                               IsVisible="{Binding TotalCommentsCount, Converter={StaticResource VisibleWhenItemsConverter}">
+                    <BoxView Color="Gray" HorizontalOptions="FillAndExpand" HeightRequest="1" />
+
+                    <StackLayout Orientation="Horizontal" Margin="3">
+                      <Image Source="{Binding LastComment.Sender.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="40" VerticalOptions="Start" />
+                      <StackLayout>
+                        <Label Text="{Binding LastComment.Sender.FullName}" FontSize="11" FontAttributes="Bold" />
+                        <Label Text="{Binding LastComment.SentDate, Converter={StaticResource RelativeTimeConverter}}" TextColor="Gray"
+                               FontSize="11" Margin="0,-5,0,0" />
+                      </StackLayout>
+                    </StackLayout>
+                    <Label Text="{Binding LastComment.Text}" FontSize="11" Margin="3,0,10,10" LineBreakMode="TailTruncation" />
+                  </StackLayout>
+
+                </StackLayout>
+              </Frame>
+              <BoxView HeightRequest="1" IsEnabled="False" />
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+
+      <ListView.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="ItemTapped">
+          <behaviors:InvokeCommandAction Command="{Binding ItemTappedCommand}" Converter="{StaticResource ItemTappedConverter}" />
+        </behaviors:EventHandlerBehavior>
+      </ListView.Behaviors>
+    </ListView>
+
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+      <ActivityIndicator.HorizontalOptions>
+        <OnPlatform x:TypeArguments="LayoutOptions" iOS="CenterAndExpand" Android="CenterAndExpand" WinPhone="FillAndExpand" />
+      </ActivityIndicator.HorizontalOptions>
+      <ActivityIndicator.VerticalOptions>
+        <OnPlatform x:TypeArguments="LayoutOptions" iOS="CenterAndExpand" Android="CenterAndExpand" WinPhone="FillAndExpand" />
+      </ActivityIndicator.VerticalOptions>
+    </ActivityIndicator>
+  </Grid>
+
+</local:ContentPageBase>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:ContentPageBase
+             Title="Timeline Forms"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimelineForms.Views.LoginPage"
+             xmlns:local="clr-namespace:TimelineForms.Common"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             BindingContext="{Binding Source={StaticResource Locator}, Path=LoginViewModel}"
+             BackgroundColor="{DynamicResource backgroundColor}">
+
+  <StackLayout VerticalOptions="CenterAndExpand">
+    <Button BackgroundColor="#3B5998" Command="{Binding LoginCommand}" Text="Login with Facebook" WidthRequest="200"
+            IsVisible="{Binding CanLogin}">
+      <Button.Image>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="facebook.png" Android="facebook.png" WinPhone="Assets/AppBar/facebook.png" />
+      </Button.Image>
+    </Button>
+
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+      <ActivityIndicator.HorizontalOptions>
+        <OnPlatform x:TypeArguments="LayoutOptions" iOS="CenterAndExpand" Android="CenterAndExpand" WinPhone="FillAndExpand" />
+      </ActivityIndicator.HorizontalOptions>
+      <ActivityIndicator.VerticalOptions>
+        <OnPlatform x:TypeArguments="LayoutOptions" iOS="CenterAndExpand" Android="CenterAndExpand" WinPhone="FillAndExpand" />
+      </ActivityIndicator.VerticalOptions>
+    </ActivityIndicator>
+  </StackLayout>
+
+</local:ContentPageBase>
