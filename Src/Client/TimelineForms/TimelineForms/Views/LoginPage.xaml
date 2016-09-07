@@ -10,7 +10,7 @@
              BackgroundColor="{DynamicResource backgroundColor}">
 
   <StackLayout VerticalOptions="CenterAndExpand">
-    <Button BackgroundColor="#3B5998" Command="{Binding LoginCommand}" Text="Login with Facebook" WidthRequest="200"
+    <Button BackgroundColor="#3B5998" Command="{Binding LoginCommand}" Text="Login with Facebook" WidthRequest="200"            
             IsVisible="{Binding CanLogin}">
       <Button.Image>
         <OnPlatform x:TypeArguments="FileImageSource" iOS="facebook.png" Android="facebook.png" WinPhone="Assets/AppBar/facebook.png" />

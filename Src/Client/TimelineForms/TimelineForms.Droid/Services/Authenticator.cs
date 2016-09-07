@@ -28,8 +28,13 @@ namespace TimelineForms.Droid.Services
             client = ServiceLocator.Current.GetInstance<IMobileServiceClient>();
         }
 
-        public Task<MobileServiceUser> LoginAsync()
-            => client.LoginAsync(MainActivity.Current, MobileServiceAuthenticationProvider.Facebook);
+        public async Task<MobileServiceUser> LoginAsync()
+        {
+            var user = await client.LoginAsync(MainActivity.Current, MobileServiceAuthenticationProvider.Facebook);
+            await Task.Delay(10);
+
+            return user;
+        }
 
         public async Task LogoutAsync()
         {
