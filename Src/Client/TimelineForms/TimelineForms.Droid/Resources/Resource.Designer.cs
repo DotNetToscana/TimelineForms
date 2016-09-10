@@ -64,6 +64,7 @@ namespace TimelineForms.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::TimelineForms.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::TimelineForms.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::Splat.Resource.String.library_name = global::TimelineForms.Droid.Resource.String.library_name;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::TimelineForms.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

@@ -16,7 +16,7 @@ using TimelineForms.Extensions;
 
 namespace TimelineForms.ViewModels
 {
-    public partial class PostDetailsViewModel : ViewModelBase
+    public class PostDetailsViewModel : ViewModelBase
     {
         private readonly IMobileServiceClient client;
         private readonly IUserService userService;

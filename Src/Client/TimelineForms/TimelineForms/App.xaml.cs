@@ -13,7 +13,7 @@ namespace TimelineForms
     {
         public App()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
             // The root page of your application
             var mainPage = new LoginPage();
@@ -22,7 +22,7 @@ namespace TimelineForms
 
         protected override async void OnStart()
         {
-            // If the app is launched one hour after its last stop, its navigation history 
+            // If the app is launched one hour after its last stop, its navigation history
             // will be restored.
             await this.MainPage.Navigation.RestoreAsync(TimeSpan.FromHours(1));
         }

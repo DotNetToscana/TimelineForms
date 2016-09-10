@@ -19,7 +19,7 @@ namespace TimelineForms.Views
 
         protected override void OnAppearing()
         {
-            Messenger.Default.Register<NotificationMessage>(this, msg => 
+            Messenger.Default.Register<NotificationMessage>(this, msg =>
             {
                 switch (msg.Notification)
                 {

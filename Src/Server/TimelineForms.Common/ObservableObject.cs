@@ -97,7 +97,7 @@ namespace TimelineForms.Common
 
         /// <summary>
         /// Assigns a new value to the property. Then, raises the
-        /// PropertyChanged event if needed. 
+        /// PropertyChanged event if needed.
         /// </summary>
         /// <typeparam name="T">The type of the property that
         /// changed.</typeparam>
@@ -130,7 +130,7 @@ namespace TimelineForms.Common
 
         /// <summary>
         /// Assigns a new value to the property. Then, raises the
-        /// PropertyChanged event if needed. 
+        /// PropertyChanged event if needed.
         /// </summary>
         /// <typeparam name="T">The type of the property that
         /// changed.</typeparam>
@@ -159,7 +159,7 @@ namespace TimelineForms.Common
 
         /// <summary>
         /// Assigns a new value to the property. Then, raises the
-        /// PropertyChanged event if needed. 
+        /// PropertyChanged event if needed.
         /// </summary>
         /// <typeparam name="T">The type of the property that
         /// changed.</typeparam>
@@ -171,7 +171,7 @@ namespace TimelineForms.Common
         /// <returns>True if the PropertyChanged event has been raised,
         /// false otherwise. The event is not raised if the old
         /// value is equal to the new value.</returns>
-        protected bool Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null) 
+        protected bool Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
             => Set(propertyName, ref field, newValue);
     }
 }

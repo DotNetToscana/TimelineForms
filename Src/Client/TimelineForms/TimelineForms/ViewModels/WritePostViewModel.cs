@@ -18,7 +18,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TimelineForms.ViewModels
 {
-    public partial class WritePostViewModel : ViewModelBase
+    public class WritePostViewModel : ViewModelBase
     {
         private readonly IMobileServiceClient client;
         private readonly IUserService userService;

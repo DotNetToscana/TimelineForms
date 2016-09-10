@@ -13,15 +13,19 @@ namespace TimelineForms.Converters
 {
     public class ImageSourceConverter : IValueConverter
     {
+        private static HttpClient client;
+
+        static ImageSourceConverter()
+        {
+            client = new HttpClient();
+        }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
             {
-                using (var client = new HttpClient())
-                {
-                    var buffer = client.GetByteArrayAsync(value.ToString()).Result;
-                    return ImageSource.FromStream(() => new MemoryStream(buffer));
-                }
+                var buffer = client.GetByteArrayAsync(value.ToString()).Result;
+                return ImageSource.FromStream(() => new MemoryStream(buffer));
             }
 
             return null;

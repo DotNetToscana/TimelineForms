@@ -17,7 +17,7 @@ using System.Reflection;
 
 namespace TimelineForms.ViewModels
 {
-    public partial class HomeViewModel : ViewModelBase
+    public class HomeViewModel : ViewModelBase
     {
         private readonly IMobileServiceClient client;
         private readonly IUserService userService;

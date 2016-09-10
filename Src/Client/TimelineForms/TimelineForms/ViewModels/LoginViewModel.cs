@@ -14,14 +14,25 @@ using Xamarin.Forms;
 
 namespace TimelineForms.ViewModels
 {
-    public partial class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
         private readonly IMobileServiceClient client;
         private readonly IUserService userService;
 
         public AutoRelayCommand LoginCommand { get; set; }
 
-        public bool CanLogin => !IsBusy && !userService.IsAuthenticated;
+        public bool CanLogin => !IsBusy && !IsLoggingIn && !userService.IsAuthenticated;
+
+        private bool isLoggingIn;
+        public bool IsLoggingIn
+        {
+            get { return isLoggingIn; }
+            set
+            {
+                if (this.Set(ref isLoggingIn, value, broadcast: true))
+                    RaisePropertyChanged(() => CanLogin);
+            }
+        }
 
         public LoginViewModel(IMobileServiceClient client, IUserService userService)
         {
@@ -34,12 +45,13 @@ namespace TimelineForms.ViewModels
         private void CreateCommands()
         {
             LoginCommand = new AutoRelayCommand(async () => await LoginAsync(), () => CanLogin)
-                .DependsOn(()=>IsBusy).DependsOn(() => CanLogin);
+                .DependsOn(() => CanLogin);
         }
 
         private async Task LoginAsync()
         {
             IsBusy = true;
+            IsLoggingIn = true;
 
             try
             {
@@ -50,28 +62,34 @@ namespace TimelineForms.ViewModels
             catch (InvalidOperationException)
             {
                 /* Authentication was canceled by the user. */
-                IsBusy = false;
             }
             catch
             {
                 await DialogService.AlertAsync("An error occurred while logging in.");
-
+            }
+            finally
+            {
                 IsBusy = false;
+                IsLoggingIn = false;
             }
         }
 
         public override async void Activate(object parameter)
         {
-            IsBusy = true;
-
-            var logged = await userService.TryAutoLoginAsync();
-            if (logged)
-            { 
-                NavigationService.NavigateTo(Constants.HomePage, HistoryBehavior.ClearHistory);
-            }
-            else
+            // Checks if a logging-in operation isn't already in progress.
+            if (!isLoggingIn)
             {
-                IsBusy = false;
+                IsBusy = true;
+
+                var logged = await userService.TryAutoLoginAsync();
+                if (logged)
+                {
+                    NavigationService.NavigateTo(Constants.HomePage, HistoryBehavior.ClearHistory);
+                }
+                else
+                {
+                    IsBusy = false;
+                }
             }
 
             base.Activate(parameter);
