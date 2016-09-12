@@ -55,9 +55,8 @@ namespace TimelineForms.ViewModels
 
             try
             {
-                var logged = await userService.LoginAsync();
-                if (logged)
-                    NavigationService.NavigateTo(Constants.HomePage, HistoryBehavior.ClearHistory);
+                var isLogged = await userService.LoginAsync();
+                this.CheckLoginResult(isLogged);
             }
             catch (InvalidOperationException)
             {
@@ -76,23 +75,29 @@ namespace TimelineForms.ViewModels
 
         public override async void Activate(object parameter)
         {
-            // Checks if a logging-in operation isn't already in progress.
+            IsBusy = true;
+
+            // Checks if a logging-in operation is already in progress.
             if (!isLoggingIn)
             {
-                IsBusy = true;
-
-                var logged = await userService.TryAutoLoginAsync();
-                if (logged)
+                try
                 {
-                    NavigationService.NavigateTo(Constants.HomePage, HistoryBehavior.ClearHistory);
+                    var isLogged = await userService.TryAutoLoginAsync();
+                    this.CheckLoginResult(isLogged);
                 }
-                else
+                finally
                 {
                     IsBusy = false;
                 }
             }
 
             base.Activate(parameter);
+        }
+
+        private void CheckLoginResult(bool isLogged)
+        {
+            if (isLogged)
+                NavigationService.NavigateTo(Constants.HomePage, HistoryBehavior.ClearHistory);
         }
 
         protected override void OnIsBusyChanged()
