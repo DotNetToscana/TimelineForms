@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:ContentPageBase
+<common:ContentPageBase
              Title="Timeline Forms"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimelineForms.Views.LoginPage"
-             xmlns:local="clr-namespace:TimelineForms.Common"
+             xmlns:common="clr-namespace:TimelineForms.Common"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding Source={StaticResource Locator}, Path=LoginViewModel}"
              BackgroundColor="{DynamicResource backgroundColor}">
@@ -27,4 +27,4 @@
     </ActivityIndicator>
   </StackLayout>
 
-</local:ContentPageBase>
+</common:ContentPageBase>

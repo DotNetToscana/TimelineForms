@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:ContentPageBase
+<common:ContentPageBase
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimelineForms.Views.PostDetailsPage"
-             xmlns:local="clr-namespace:TimelineForms.Common"
+             xmlns:common="clr-namespace:TimelineForms.Common"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
-             xmlns:localBehaviors="clr-namespace:TimelineForms.Behaviors"
              BindingContext="{Binding Source={StaticResource Locator}, Path=PostDetailsViewModel}">
 
   <ContentPage.ToolbarItems>
@@ -61,11 +60,7 @@
 
       <StackLayout Grid.Row="2" Orientation="Horizontal">
         <Image Source="{Binding User.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="40" VerticalOptions="Start" />
-        <Entry Placeholder="Leave a comment..." HorizontalOptions="FillAndExpand">
-          <Entry.Behaviors>
-            <localBehaviors:EntryTextChangedBehavior Text="{Binding Message, Mode=TwoWay}" />
-          </Entry.Behaviors>
-        </Entry>
+        <Entry Placeholder="Leave a comment..." HorizontalOptions="FillAndExpand" Text="{Binding Message}" />
         <Button Text="Send" Command="{Binding SendCommand}" HeightRequest="40" />
       </StackLayout>
     </Grid>
@@ -80,4 +75,4 @@
     </ActivityIndicator>
   </Grid>
 
-</local:ContentPageBase>
+</common:ContentPageBase>

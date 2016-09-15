@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:ContentPageBase
+<common:ContentPageBase
              Title="Write new post"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimelineForms.Views.WritePostPage"
-             xmlns:local="clr-namespace:TimelineForms.Common"
+             xmlns:common="clr-namespace:TimelineForms.Common"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
-             xmlns:localBehaviors="clr-namespace:TimelineForms.Behaviors"
              BindingContext="{Binding Source={StaticResource Locator}, Path=WritePostViewModel}">
 
   <Grid>
@@ -15,11 +14,7 @@
         <Image Source="{Binding User.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="60" VerticalOptions="Start" />
         <Label Text="What are you doing?" />
       </StackLayout>
-      <Editor HeightRequest="60">
-        <Editor.Behaviors>
-          <localBehaviors:EditorTextChangedBehavior Text="{Binding Message, Mode=TwoWay}" />
-        </Editor.Behaviors>
-      </Editor>
+      <Editor HeightRequest="60" Text="{Binding Message}" />
       <StackLayout Orientation="Horizontal" Spacing="0">
         <Label Text="Publish on Facebook" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
         <Switch IsToggled="{Binding PostOnFacebook, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
@@ -37,4 +32,4 @@
     </ActivityIndicator>
   </Grid>
 
-</local:ContentPageBase>
+</common:ContentPageBase>
