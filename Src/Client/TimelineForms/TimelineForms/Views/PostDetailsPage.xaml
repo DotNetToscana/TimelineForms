@@ -60,7 +60,7 @@
 
       <StackLayout Grid.Row="2" Orientation="Horizontal">
         <Image Source="{Binding User.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="40" VerticalOptions="Start" />
-        <Entry Placeholder="Leave a comment..." HorizontalOptions="FillAndExpand" Text="{Binding Message}" />
+        <Entry Placeholder="Leave a comment..." HorizontalOptions="FillAndExpand" Text="{Binding Message, Mode=TwoWay}" />
         <Button Text="Send" Command="{Binding SendCommand}" HeightRequest="40" />
       </StackLayout>
     </Grid>

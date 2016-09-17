@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Acr.UserDialogs": "6.2.2",
+    "Acr.UserDialogs": "6.2.3",
     "Behaviors.Forms": "1.1.0",
     "Microsoft.Azure.Mobile.Client": "2.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
