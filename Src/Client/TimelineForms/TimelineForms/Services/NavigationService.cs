@@ -22,7 +22,17 @@ namespace TimelineForms.Services
 
         public string CurrentPageKey { get; private set; }
 
-        public Page MainPage => Application.Current.MainPage;
+        public Page MainPage
+        {
+            get
+            {
+                var page = Application.Current.MainPage;
+                if (page is MasterDetailPage)
+                    page = (page as MasterDetailPage).Detail;
+
+                return page;
+            }
+        }
 
         public void Configure(string key, Type pageType) => pages.Add(key, pageType);
 
