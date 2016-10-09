@@ -54,6 +54,8 @@
     <Compile Include="Converters\ValueWhenConverter.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\UserServiceExtensions.cs" />
+    <Compile Include="Services\Demo\TimelineService.cs" />
+    <Compile Include="Services\Demo\UserService.cs" />
     <Compile Include="Services\IAuthenticator.cs" />
     <Compile Include="Services\INotificationManager.cs" />
     <Compile Include="Services\ITimelineService.cs" />
@@ -196,6 +198,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

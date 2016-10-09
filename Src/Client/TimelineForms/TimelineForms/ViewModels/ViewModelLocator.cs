@@ -30,8 +30,9 @@ namespace TimelineForms.ViewModels
                 return client;
             });
 
-            SimpleIoc.Default.Register<IUserService, UserService>();
-            SimpleIoc.Default.Register<ITimelineService, TimelineService>();
+            SimpleIoc.Default.Register<IUserService, Services.Demo.UserService>();
+            SimpleIoc.Default.Register<ITimelineService, Services.Demo.TimelineService>();
+
             SimpleIoc.Default.Register<IUserDialogs>(() => UserDialogs.Instance);
 
             SimpleIoc.Default.Register<LoginViewModel>();

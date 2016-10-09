@@ -16,7 +16,7 @@ namespace TimelineForms.Services
         private readonly IMobileServiceClient client;
         private readonly IUserService userService;
 
-        public bool IsLoaded => Posts.Count > 0;
+        public bool IsLoaded => Posts.Any();
 
         public ObservableCollection<TimelinePost> Posts { get; } = new ObservableCollection<TimelinePost>();
 

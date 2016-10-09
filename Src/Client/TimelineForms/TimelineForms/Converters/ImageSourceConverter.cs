@@ -24,8 +24,12 @@ namespace TimelineForms.Converters
         {
             if (value != null)
             {
-                var buffer = client.GetByteArrayAsync(value.ToString()).Result;
-                return ImageSource.FromStream(() => new MemoryStream(buffer));
+                try
+                {
+                    var buffer = client.GetByteArrayAsync(value.ToString()).Result;
+                    return ImageSource.FromStream(() => new MemoryStream(buffer));
+                }
+                catch { }
             }
 
             return null;

@@ -32,6 +32,7 @@ namespace TimelineForms.UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.UnhandledException += OnUnhandledException;
         }
 
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
@@ -102,6 +103,12 @@ namespace TimelineForms.UWP
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            if (e.Exception is NullReferenceException && e.Message.Contains("Xamarin.Forms.Platform.UWP.ButtonRenderer"))
+                e.Handled = true;
         }
     }
 }
