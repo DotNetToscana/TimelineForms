@@ -26,6 +26,10 @@ namespace timelineformsService.DataObjects
         [StringLength(255)]
         public string ImageUrl { get; set; }
 
+        [Required]
+        [StringLength(255)]
+        public string ProfileUrl { get; set; }
+
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}".Trim();
     }

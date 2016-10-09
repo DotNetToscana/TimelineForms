@@ -33,6 +33,7 @@ namespace timelineformsService.Controllers
             string lastName = null;
             string eMail = null;
             string imageUrl = null;
+            string profileUrl = null;
 
             using (var db = new timelineformsContext())
             {
@@ -45,6 +46,7 @@ namespace timelineformsService.Controllers
                     lastName = creds.UserClaims.FirstOrDefault(c => c.Type == ClaimTypes.Surname).Value;
                     eMail = creds.UserClaims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
                     imageUrl = $"https://graph.facebook.com/{facebookUserId}/picture?width=150";
+                    profileUrl = $"https://www.facebook.com/app_scoped_user_id/{facebookUserId}/";
 
                     userDb = new DataObjects.User
                     {
@@ -54,6 +56,7 @@ namespace timelineformsService.Controllers
                         LastName = lastName,
                         EMail = eMail,
                         ImageUrl = imageUrl,
+                        ProfileUrl = profileUrl,
                         Deleted = false
                     };
 
@@ -68,6 +71,7 @@ namespace timelineformsService.Controllers
                     lastName = userDb.LastName;
                     eMail = userDb.EMail;
                     imageUrl = userDb.ImageUrl;
+                    profileUrl = userDb.ProfileUrl;
                 }
             }
 
@@ -78,7 +82,8 @@ namespace timelineformsService.Controllers
                 FirstName = firstName,
                 LastName = lastName,
                 EMail = eMail,
-                ImageUrl = imageUrl
+                ImageUrl = imageUrl,
+                ProfileUrl = profileUrl
             };
 
             return Ok(user);

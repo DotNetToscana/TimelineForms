@@ -21,7 +21,7 @@ namespace timelineformsService.DataObjects
         public string Text { get; set; }
 
         public DateTimeOffset SentDate { get; set; }
-        
+
         [Required]
         [StringLength(50)]
         public string PostId { get; set; }

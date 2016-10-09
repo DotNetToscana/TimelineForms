@@ -32,7 +32,8 @@ namespace timelineformsService.Controllers
                             EMail = p.Sender.EMail,
                             FirstName = p.Sender.FirstName,
                             LastName = p.Sender.LastName,
-                            ImageUrl = p.Sender.ImageUrl
+                            ImageUrl = p.Sender.ImageUrl,
+                            ProfileUrl = p.Sender.ProfileUrl
                         },
                         Comments = p.Comments.OrderByDescending(c => c.SentDate).Take(1)
                         .Select(c => new Comment
@@ -46,7 +47,8 @@ namespace timelineformsService.Controllers
                                 EMail = c.Sender.EMail,
                                 FirstName = c.Sender.FirstName,
                                 LastName = c.Sender.LastName,
-                                ImageUrl = c.Sender.ImageUrl
+                                ImageUrl = c.Sender.ImageUrl,
+                                ProfileUrl = c.Sender.ProfileUrl
                             },
                         }).ToList(),
                         TotalCommentsCount = p.Comments.Count,
