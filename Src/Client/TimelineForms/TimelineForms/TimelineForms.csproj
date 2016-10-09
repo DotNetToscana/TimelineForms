@@ -42,6 +42,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\TapBehavior.cs" />
     <Compile Include="Common\AutoRelayCommand.cs" />
     <Compile Include="Common\ContentPageBase.cs" />
     <Compile Include="Common\INavigable.cs" />

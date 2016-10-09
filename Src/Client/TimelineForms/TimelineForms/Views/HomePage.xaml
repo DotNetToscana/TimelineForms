@@ -4,8 +4,10 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimelineForms.Views.HomePage"
+             x:Name="HomePage"
              xmlns:common="clr-namespace:TimelineForms.Common"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             xmlns:localBehaviors="clr-namespace:TimelineForms.Behaviors"
              BindingContext="{Binding Source={StaticResource Locator}, Path=HomeViewModel}">
 
   <ContentPage.ToolbarItems>
@@ -32,7 +34,13 @@
               <Frame Padding="5" HasShadow="true" OutlineColor="Gray">
                 <StackLayout>
                   <StackLayout Orientation="Horizontal">
-                    <Image Source="{Binding Sender.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="60" VerticalOptions="Start" />
+                    <Image Source="{Binding Sender.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="60" VerticalOptions="Start">
+                      <Image.Behaviors>
+                        <localBehaviors:TapBehavior>
+                          <behaviors:InvokeCommandAction Command="{Binding Path=BindingContext.GotoProfileCommand, Source={x:Reference HomePage}}" CommandParameter="{Binding Sender.ProfileUrl}" />
+                        </localBehaviors:TapBehavior>
+                      </Image.Behaviors>
+                    </Image>
                     <StackLayout>
                       <Label Text="{Binding Sender.FullName}" FontSize="12" FontAttributes="Bold" />
                       <Label Text="{Binding SentDate, Converter={StaticResource RelativeTimeConverter}}" TextColor="Gray"
@@ -47,7 +55,13 @@
                     <BoxView Color="Gray" HorizontalOptions="FillAndExpand" HeightRequest="1" />
 
                     <StackLayout Orientation="Horizontal" Margin="3">
-                      <Image Source="{Binding LastComment.Sender.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="40" VerticalOptions="Start" />
+                      <Image Source="{Binding LastComment.Sender.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="40" VerticalOptions="Start">
+                        <Image.Behaviors>
+                          <localBehaviors:TapBehavior>
+                            <behaviors:InvokeCommandAction Command="{Binding Path=BindingContext.GotoProfileCommand, Source={x:Reference HomePage}}" CommandParameter="{Binding LastComment.Sender.ProfileUrl}" />
+                          </localBehaviors:TapBehavior>
+                        </Image.Behaviors>
+                      </Image>
                       <StackLayout>
                         <Label Text="{Binding LastComment.Sender.FullName}" FontSize="11" FontAttributes="Bold" />
                         <Label Text="{Binding LastComment.SentDate, Converter={StaticResource RelativeTimeConverter}}" TextColor="Gray"

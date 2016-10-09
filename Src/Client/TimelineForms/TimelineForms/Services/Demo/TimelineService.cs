@@ -37,7 +37,8 @@ namespace TimelineForms.Services.Demo
                     FirstName = "Marco",
                     LastName = "Minerva",
                     EMail = "mail@mail.com",
-                    ImageUrl = "https://graph.facebook.com/10209897682705340/picture?width=150"
+                    ImageUrl = "https://graph.facebook.com/10209897682705340/picture?width=150",
+                    ProfileUrl = "https://www.facebook.com/app_scoped_user_id/10209897682705340/"
                 },
                 new User
                 {
@@ -46,7 +47,8 @@ namespace TimelineForms.Services.Demo
                     FirstName = "Riccardo",
                     LastName = "Cappello",
                     EMail = "mail@mail.com",
-                    ImageUrl = "https://graph.facebook.com/1379484041/picture?width=150"
+                    ImageUrl = "https://graph.facebook.com/1379484041/picture?width=150",
+                    ProfileUrl = "https://www.facebook.com/app_scoped_user_id/1379484041/"
                 },
                 new User
                 {
@@ -55,7 +57,8 @@ namespace TimelineForms.Services.Demo
                     FirstName = "Armando",
                     LastName = "Sanremo",
                     EMail = "mail@mail.com",
-                    ImageUrl = "https://graph.facebook.com/596120713895256/picture?width=150"
+                    ImageUrl = "https://graph.facebook.com/596120713895256/picture?width=150",
+                    ProfileUrl = "https://www.facebook.com/app_scoped_user_id/596120713895256/"
                 }
             };
 

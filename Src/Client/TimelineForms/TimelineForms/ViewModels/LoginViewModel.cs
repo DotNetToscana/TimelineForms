@@ -16,7 +16,6 @@ namespace TimelineForms.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly IMobileServiceClient client;
         private readonly IUserService userService;
 
         public AutoRelayCommand LoginCommand { get; set; }
@@ -34,9 +33,8 @@ namespace TimelineForms.ViewModels
             }
         }
 
-        public LoginViewModel(IMobileServiceClient client, IUserService userService)
+        public LoginViewModel(IUserService userService)
         {
-            this.client = client;
             this.userService = userService;
 
             this.CreateCommands();

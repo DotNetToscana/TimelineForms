@@ -19,7 +19,6 @@ namespace TimelineForms.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private readonly IMobileServiceClient client;
         private readonly IUserService userService;
         private readonly ITimelineService timelineService;
 
@@ -31,11 +30,12 @@ namespace TimelineForms.ViewModels
 
         public AutoRelayCommand LogoutCommand { get; set; }
 
+        public AutoRelayCommand<string> GotoProfileCommand { get; set; }
+
         public ObservableCollection<TimelinePost> Posts => timelineService.Posts;
 
-        public HomeViewModel(IMobileServiceClient client, IUserService userService, ITimelineService timelineService)
+        public HomeViewModel(IUserService userService, ITimelineService timelineService)
         {
-            this.client = client;
             this.userService = userService;
             this.timelineService = timelineService;
 
@@ -51,6 +51,8 @@ namespace TimelineForms.ViewModels
 
             WritePostCommand = new AutoRelayCommand(() => NavigationService.NavigateTo(Constants.WritePostPage),
                 () => !IsBusy).DependsOn(() => IsBusy);
+
+            GotoProfileCommand = new AutoRelayCommand<string>((url) => Device.OpenUri(new Uri(url)));
 
             LogoutCommand = new AutoRelayCommand(async () => await LogoutAsync());
         }

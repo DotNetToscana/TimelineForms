@@ -23,5 +23,7 @@ namespace TimelineForms.Common.Models
         public string FullName => $"{FirstName} {LastName}".Trim();
 
         public string ImageUrl { get; set; }
+
+        public string ProfileUrl { get; set; }
     }
 }

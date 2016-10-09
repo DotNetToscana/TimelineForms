@@ -20,7 +20,6 @@ namespace TimelineForms.ViewModels
 {
     public class WritePostViewModel : ViewModelBase
     {
-        private readonly IMobileServiceClient client;
         private readonly IUserService userService;
         private readonly ITimelineService timelineService;
 
@@ -45,9 +44,10 @@ namespace TimelineForms.ViewModels
 
         public AutoRelayCommand SendCommand { get; set; }
 
-        public WritePostViewModel(IMobileServiceClient client, IUserService userService, ITimelineService timelineService)
+        public AutoRelayCommand<string> GotoProfileCommand { get; set; }
+
+        public WritePostViewModel(IUserService userService, ITimelineService timelineService)
         {
-            this.client = client;
             this.userService = userService;
             this.timelineService = timelineService;
 
@@ -58,6 +58,8 @@ namespace TimelineForms.ViewModels
         {
             SendCommand = new AutoRelayCommand(async () => await SendAsync(),
                 () => !string.IsNullOrWhiteSpace(message) && !IsBusy).DependsOn(() => Message).DependsOn(() => IsBusy);
+
+            GotoProfileCommand = new AutoRelayCommand<string>((url) => Device.OpenUri(new Uri(url)));
         }
 
         private async Task SendAsync()

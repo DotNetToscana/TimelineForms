@@ -36,7 +36,8 @@ namespace TimelineForms.Services.Demo
                 FirstName = "Marco",
                 LastName = "Minerva",
                 EMail = "mail@mail.com",
-                ImageUrl = "https://graph.facebook.com/10209897682705340/picture?width=150"
+                ImageUrl = "https://graph.facebook.com/10209897682705340/picture?width=150",
+                ProfileUrl = "https://www.facebook.com/app_scoped_user_id/10209897682705340/"
             };
 
             return Task.FromResult<object>(null);
