@@ -15,7 +15,8 @@
         <Image Source="{Binding User.ImageUrl, Converter={StaticResource ImageSourceConverter}}" WidthRequest="60" VerticalOptions="Start">
           <Image.Behaviors>
             <localBehaviors:TapBehavior>
-              <behaviors:InvokeCommandAction Command="{Binding GotoProfileCommand}" CommandParameter="{Binding User.ProfileUrl}" />
+              <behaviors:InvokeCommandAction Command="{Binding GotoProfileCommand}"
+                                             CommandParameter="{Binding User.ProfileUrl}" />
             </localBehaviors:TapBehavior>
           </Image.Behaviors>
         </Image>

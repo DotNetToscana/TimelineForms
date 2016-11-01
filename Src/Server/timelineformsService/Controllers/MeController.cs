@@ -20,10 +20,12 @@ namespace timelineformsService.Controllers
     [Authorize]
     public class MeController : ApiController
     {
+        private const string FacebookProfileUrlClaim = "urn:facebook:link";
+
         public async Task<IHttpActionResult> GetMe()
         {
-            //MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
-            //ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
+            //var settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
+            //var traceWriter = this.Configuration.Services.GetTraceWriter();
 
             var userId = this.User.GetUserId();
             var creds = await this.User.GetAppServiceIdentityAsync<FacebookCredentials>(this.Request);
@@ -45,8 +47,8 @@ namespace timelineformsService.Controllers
                     firstName = creds.UserClaims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName).Value;
                     lastName = creds.UserClaims.FirstOrDefault(c => c.Type == ClaimTypes.Surname).Value;
                     eMail = creds.UserClaims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                    profileUrl = creds.UserClaims.FirstOrDefault(c => c.Type == FacebookProfileUrlClaim).Value;
                     imageUrl = $"https://graph.facebook.com/{facebookUserId}/picture?width=150";
-                    profileUrl = $"https://www.facebook.com/app_scoped_user_id/{facebookUserId}/";
 
                     userDb = new DataObjects.User
                     {

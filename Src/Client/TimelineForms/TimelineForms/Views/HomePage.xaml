@@ -81,7 +81,8 @@
 
       <ListView.Behaviors>
         <behaviors:EventHandlerBehavior EventName="ItemTapped">
-          <behaviors:InvokeCommandAction Command="{Binding ItemTappedCommand}" Converter="{StaticResource ItemTappedConverter}" />
+          <behaviors:InvokeCommandAction Command="{Binding ItemTappedCommand}"
+                                         Converter="{StaticResource ItemTappedConverter}" />
         </behaviors:EventHandlerBehavior>
       </ListView.Behaviors>
     </ListView>
