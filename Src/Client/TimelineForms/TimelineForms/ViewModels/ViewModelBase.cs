@@ -10,9 +10,9 @@ namespace TimelineForms.ViewModels
 {
     public abstract class ViewModelBase : GalaSoft.MvvmLight.ViewModelBase, INavigable
     {
-        public NavigationService NavigationService { get; }
+        protected NavigationService NavigationService { get; }
 
-        public IUserDialogs DialogService { get; }
+        protected IUserDialogs DialogService { get; }
 
         public ViewModelBase()
         {
